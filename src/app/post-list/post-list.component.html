@@ -1,0 +1,53 @@
+<h1>Post List</h1>
+<header></header>
+<hr />
+<p class="total-count">
+  Total Count: <b> {{ posts.length}}</b>
+</p>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Name</th>
+      <th scope="col">Email</th>
+      <th scope="col">Comment</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let post of posts">
+      <th scope="row">{{ post.id }}</th>
+      <td>
+        {{ post.name }}
+      </td>
+      <td>{{ post.email}}</td>
+      <td>{{ post.body }}</td>
+      <td>
+        <span class="btn btn-primary" (click)="setPostDetail(post)">
+          <fa-icon [icon]="faEdit"></fa-icon>
+        </span>
+        </td>
+        <td>
+        <span class="btn btn-outline-primary" (click)="open(mymodal, post)">
+          <fa-icon [icon]="faTrash"></fa-icon>
+        </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<ng-template #mymodal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Delete Post</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    Are you sure you want to delete this post?
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="modal.close('Save click')">Yes</button>
+    <button type="button" class="btn btn-outline-dark" (click)="modal.dismiss('Cross click')">No</button>
+  </div>
+</ng-template>
